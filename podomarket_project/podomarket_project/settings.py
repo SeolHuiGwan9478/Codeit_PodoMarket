@@ -143,3 +143,9 @@ SITE_ID = 1
 
 # Email
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# allauth
+ACCOUNT_SIGNUP_REDIRECT_URL = "index" #회원가입 후 리디렉트
+LOGIN_REDIRECT_URL = 'index' #로그인 후 리디렉트
+ACCOUNT_LOGOUT_ON_GET = True #로그아웃 시 바로 로그아웃
+
