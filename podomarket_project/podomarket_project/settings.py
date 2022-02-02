@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -145,3 +146,9 @@ ACCOUNT_USERNAME_REQUIRED = False #username 필수 입력 제외
 ACCOUNT_SESSION_REMEMBER = True #세션ID 브라우저 나가도 기억
 SESSION_COOKIE_AGE = 3600
 ACCOUNT_SIGNUP_FORM_CLASS = "podomarket.forms.SignupForm"
+ACCOUNT_PASSWORD_INPUT_RENDER_VALUE = True
+ACCOUNT_EMAIL_VARIFICATION = "optional"
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATION_REDIRECT_URL = "account_email_confirmation_done"
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = "account_email_confirmation_done"
+PASSWORD_RESET_TIMEOUT = 300
