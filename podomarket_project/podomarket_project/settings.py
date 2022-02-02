@@ -90,16 +90,7 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME':'podomarket.validators.CustomPasswordValidator'
     },
 ]
 
@@ -107,7 +98,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ko-kr'
 
 TIME_ZONE = 'UTC'
 
@@ -148,4 +139,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 ACCOUNT_SIGNUP_REDIRECT_URL = "index" #회원가입 후 리디렉트
 LOGIN_REDIRECT_URL = 'index' #로그인 후 리디렉트
 ACCOUNT_LOGOUT_ON_GET = True #로그아웃 시 바로 로그아웃
-
+ACCOUNT_AUTHENTICATION_METHOD = 'email' #기본 로그인 email로
+ACCOUNT_EMAIL_REQUIRED = True #email 필수 입력
+ACCOUNT_USERNAME_REQUIRED = False #username 필수 입력 제외
+ACCOUNT_SESSION_REMEMBER = True #세션ID 브라우저 나가도 기억
+SESSION_COOKIE_AGE = 3600
+ACCOUNT_SIGNUP_FORM_CLASS = "podomarket.forms.SignupForm"
