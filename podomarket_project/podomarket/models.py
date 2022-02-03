@@ -16,4 +16,28 @@ class User(AbstractUser):
     )
     def __str__(self):
         return self.email
+
+class Post(models.Model):
+    title = models.CharField(max_length=60)
+    item_price = models.IntegerField()
+
+    CONDITION_CHOICES = [
+        ('새재품', '새제품'),
+        ('최상', '최상'),
+        ('상', '상'),
+        ('중', '중'),
+        ('하', '하'),
+    ]
+
+    item_condition = models.CharField(max_length=10, choices=CONDITION_CHOICES)
+    item_details = models.TextField()
+    image1 = models.ImageField(upload_to='item_pics')
+    image2 = models.ImageField(upload_to='item_pics')
+    image3 = models.ImageField(upload_to='item_pics')
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    dt_created = models.DateTimeField(auto_now_add=True)
+    dt_updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.title
     
