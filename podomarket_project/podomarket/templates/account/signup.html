@@ -16,37 +16,37 @@
     {% csrf_token %}
     <div class="email">
       {{ form.email|attr:"placeholder:이메일"|add_class:"podo-input"|add_error_class:"error" }}
-      {% for error in for.email.errors %}
+      {% for error in form.email.errors %}
         <div class="error-message">{{ error }}</div>
       {% endfor %}
     </div>
     <div class="password1">
       {{form.password1|attr:"placeholder:비밀번호"|add_class:"podo-input"|add_error_class:"error"}}
-      {% for error in for.password1.errors %}
+      {% for error in form.password1.errors %}
         <div class="error-message">{{ error }}</div>
       {% endfor %}
     </div>
     <div class="password2">
       {{form.password2|attr:"placeholder:비밀번호 확인"|add_class:"podo-input"|add_error_class:"error"}}
-      {% for error in for.password2.errors %}
+      {% for error in form.password2.errors %}
         <div class="error-message">{{ error }}</div>
       {% endfor %}
     </div>
     <div class="nickname">
       {{form.nickname|attr:"placeholder:닉네임"|add_class:"podo-input"|add_error_class:"error"}}
-      {% for error in for.nickname.errors %}
+      {% for error in form.nickname.errors %}
         <div class="error-message">{{ error }}</div>
       {% endfor %}
     </div>
     <div class="kakao_id">
       {{form.kakao_id|attr:"placeholder:카카오 ID"|add_class:"podo-input"|add_error_class:"error"}}
-      {% for error in for.kakao_id.errors %}
+      {% for error in form.kakao_id.errors %}
         <div class="error-message">{{ error }}</div>
       {% endfor %}
     </div>
     <div class="address">
       {{form.address|attr:"placeholder:주소 (예: 서울시 관악구 신림동)"|add_class:"podo-input"|add_error_class:"error"}}
-      {% for error in for.address.errors %}
+      {% for error in form.address.errors %}
         <div class="error-message">{{ error }}</div>
       {% endfor %}
     </div>

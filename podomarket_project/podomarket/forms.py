@@ -12,19 +12,18 @@ class SignupForm(forms.ModelForm):
         user.address = self.cleaned_data["address"]
         user.save()
 
- class PostForm(forms.ModelForm):
-     class Meta:
-         model = Post
-         fields = [
-             'title',
-             'item_price',
-             'item_condition',
-             'item_details',
-             'image1',
-             'image2',
-             'image3',
-         ]
-
-         widgets = {
-             'item_condition' : forms.RadioSelect,
-         }
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = [
+            'title',
+            'item_price',
+            'item_condition',
+            'item_details',
+            'image1',
+            'image2',
+            'image3',
+        ]
+        widgets = {
+           'item_condition' : forms.RadioSelect,
+        }

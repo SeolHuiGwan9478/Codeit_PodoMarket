@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.views.generic import ListView, DetailView, CreateView
 from allauth.account.views import PasswordChangeView
 from .models import Post
+from .forms import PostForm
 # Create your views here.
 class IndexView(ListView):
     model = Post
@@ -26,6 +27,7 @@ class PostCreateView(CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
 class CustomPasswordChangeView(PasswordChangeView):
     def get_success_url(self):
         return reverse("index")
