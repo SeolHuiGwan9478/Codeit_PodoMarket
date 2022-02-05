@@ -2,7 +2,7 @@
 
 {% load widget_tweaks %}
 
-{% block title %}새 게시글 작성 | 포도마켓{% endblock title %}
+{% block title %}{% if post %}{{ post.title }}{% else %}새 게시글 작성{% endif %} | 포도마켓{% endblock title %}
 
 {% block content %}
 <form class="post-form" method="post" autocomplete="off" enctype="multipart/form-data">
@@ -34,6 +34,9 @@
   </div>
   <div class="file">
     <div class="podo-input file-input">
+      {% if post.image1 %}
+        <img class="file-thumb" src="{{ post.image1.url }}">
+      {% endif %}
       <div class="file-content">
         {{ form.image1 }}
       </div>
@@ -44,6 +47,9 @@
   </div>
   <div class="file">
     <div class="podo-input file-input">
+      {% if post.image2 %}
+        <img class="file-thumb" src="{{ post.image2.url }}">
+      {% endif %}
       <div class="file-content">
         {{ form.image2 }}
       </div>
@@ -54,6 +60,9 @@
   </div>
   <div class="file">
     <div class="podo-input file-input">
+      {% if post.image3 %}
+        <img class="file-thumb" src="{{ post.image3.url }}">
+      {% endif %}
       <div class="file-content">
         {{ form.image3 }}
       </div>
@@ -63,7 +72,7 @@
     {% endfor %}
   </div>
   <div class="buttons">
-    <a class="podo-button large secondary cancel" href="{% url 'index' %}">취소</a>
+    <a class="podo-button large secondary cancel" href="{% if post %}{% url 'post-detail' post.id %}{% url 'index' %}{% endif %}">취소</a>
     <button class="podo-button large primary submit" type="submit">완료</button>
   </div>
 </form>
