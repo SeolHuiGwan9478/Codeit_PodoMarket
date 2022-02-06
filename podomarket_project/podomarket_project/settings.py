@@ -142,7 +142,7 @@ SITE_ID = 1
 # Email
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-# allauth
+# allauth settings
 ACCOUNT_SIGNUP_REDIRECT_URL = "index" #회원가입 후 리디렉트
 LOGIN_REDIRECT_URL = 'index' #로그인 후 리디렉트
 ACCOUNT_LOGOUT_ON_GET = True #로그아웃 시 바로 로그아웃
@@ -158,3 +158,6 @@ ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATION_REDIRECT_URL = "account_email_confirmation_done"
 ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = "account_email_confirmation_done"
 PASSWORD_RESET_TIMEOUT = 300
+
+# Mixin Settings
+LOGIN_URL = "account_login"

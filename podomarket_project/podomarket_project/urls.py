@@ -31,6 +31,10 @@ urlpatterns = [
         TemplateView.as_view(template_name = "podomarket/email-confirmation-done.html"),
         name="account_email_confirmation_done",
     ),
+    path("email-confirmation-required/",
+        TemplateView.as_view(template_name = "podomarket/email_confirmation_required.html"),
+        name = "account_email_confirmation_required",
+    ),
     path('', include('allauth.urls')),   
 ]
 
