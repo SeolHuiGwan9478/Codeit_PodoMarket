@@ -29,14 +29,15 @@ class Post(models.Model):
         ('하', '하'),
     ]
 
-    item_condition = models.CharField(max_length=10, choices=CONDITION_CHOICES, default=False)
+    item_condition = models.CharField(max_length=10, choices=CONDITION_CHOICES, default=None)
     item_details = models.TextField()
     image1 = models.ImageField(upload_to='item_pics')
-    image2 = models.ImageField(upload_to='item_pics')
-    image3 = models.ImageField(upload_to='item_pics')
+    image2 = models.ImageField(upload_to='item_pics', blank = True)
+    image3 = models.ImageField(upload_to='item_pics', blank = True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     dt_created = models.DateTimeField(auto_now_add=True)
     dt_updated = models.DateTimeField(auto_now=True)
+    is_sold = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title

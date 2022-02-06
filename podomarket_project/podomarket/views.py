@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from allauth.account.views import PasswordChangeView
 from .models import Post
-from .forms import PostForm
+from .forms import PostCreateForm, PostUpdateForm
 # Create your views here.
 class IndexView(ListView):
     model = Post
@@ -19,7 +19,7 @@ class PostDetailView(DetailView):
 class PostCreateView(CreateView):
     model = Post
     template_name = 'podomarket/post_form.html'
-    form_class = PostForm
+    form_class = PostCreateForm
 
     def get_success_url(self):
         return reverse('post-detail', kwargs={'post_id': self.object.id})
@@ -31,7 +31,7 @@ class PostCreateView(CreateView):
 class PostUpdateView(UpdateView):
     model = Post
     template_name = "podomarket/post_form.html"
-    form_class = PostForm
+    form_class = PostUpdateForm
     pk_url_kwarg = "post_id"
 
     def get_success_url(self):
