@@ -16,6 +16,16 @@
       <li>{{profile_user.address}}</li>
     </ul>
   </div>
+  {% if user == profile_user %}
+    <div class="buttons">
+      <a class="podo-button small secondary" href="{% url 'profile-update' %}">
+        프로필 수정
+      </a>
+      <a class="podo-button small secondary" href="{% url 'account_change_password' %}">
+        비밀번호 변경
+      </a>
+    </div>
+  {% endif %}
 </div>
 
 <div class="post-list">
@@ -42,7 +52,7 @@
         <div class="meta">
           {{post.dt_created|date:"Y.m.d"}}&nbsp;|&nbsp;{{post.author.address}}
         </div>
-        <a class="podo-button primary button" href="{% url 'user-post' profile_user.id %}">자세히보기</a>
+        <a class="podo-button primary button" href="{% url 'user-post-list' profile_user.id %}">자세히보기</a>
       </div>
     </div>
     {% empty %}

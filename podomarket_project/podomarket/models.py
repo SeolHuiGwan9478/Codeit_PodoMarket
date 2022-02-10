@@ -4,14 +4,14 @@ from .validators import *
 
 # Create your models here.
 class User(AbstractUser):
-    nickname = models.CharField(max_length=15, unique=True, null=True,
+    nickname = models.CharField(max_length=15, unique=True,
         error_messages = {"unique":"이미 사용중인 닉네임입니다."},
         validators=[validate_no_special_characters]
     )
-    kakao_id = models.CharField(max_length=20, null=True,
+    kakao_id = models.CharField(max_length=20,
         validators=[validate_no_special_characters]
     )
-    address = models.CharField(max_length=40, null=True,
+    address = models.CharField(max_length=40,
         validators=[validate_no_special_characters]
     )
     profile_pic = models.ImageField(upload_to="profile_pic", default="default_profile_pic.jpg")

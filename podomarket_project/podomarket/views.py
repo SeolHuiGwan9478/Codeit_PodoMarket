@@ -4,7 +4,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from allauth.account.views import PasswordChangeView
 from allauth.account.models import EmailAddress
 from .models import Post, User
-from .forms import PostCreateForm, PostUpdateForm
+from .forms import PostCreateForm, PostUpdateForm, ProfileForm
 from braces.views import LoginRequiredMixin, UserPassesTestMixin
 from .functions import confirmation_required_redirect
 # Create your views here.
@@ -13,7 +13,9 @@ class IndexView(ListView):
     template_name = "podomarket/index.html"
     context_object_name = "posts"
     paginate_by = 8
-    ordering = ["-dt_updated"]
+
+    def get_queryset(self):
+        return Post.objects.filter(is_sold=False).order_by('-dt_updated')
     
 class PostDetailView(LoginRequiredMixin, DetailView):
     model = Post
@@ -64,9 +66,9 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         post = self.get_object()
         return post.author == user
 
-class CustomPasswordChangeView(PasswordChangeView):
+class CustomPasswordChangeView(LoginRequiredMixin, PasswordChangeView):
     def get_success_url(self):
-        return reverse("index")
+        return reverse('profile', kwargs={'user_id': self.request.user.id})
 
 class ProfileView(DetailView):
     model = User
@@ -95,3 +97,24 @@ class UserPostListView(ListView):
         context['profile_user'] = get_object_or_404(User, id=self.kwargs.get('user_id'))
         return context
 
+class ProfileSetView(LoginRequiredMixin, UpdateView):
+    model = User
+    form_class = ProfileForm
+    template_name = 'podomarket/profile_set_form.html'
+
+    def get_object(self, queryset=None):
+        return self.request.user
+
+    def get_success_url(self):
+        return reverse('index')
+
+class ProfileUpdateView(LoginRequiredMixin, UpdateView):
+    model = User
+    form_class = ProfileForm
+    template_name = 'podomarket/profile_update_form.html'
+
+    def get_object(self, queryset=None):
+        return self.request.user
+
+    def get_success_url(self):
+        return reverse('profile', kwargs={'user_id': self.request.user.id})

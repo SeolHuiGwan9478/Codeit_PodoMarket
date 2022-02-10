@@ -143,7 +143,7 @@ SITE_ID = 1
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # allauth settings
-ACCOUNT_SIGNUP_REDIRECT_URL = "index" #회원가입 후 리디렉트
+ACCOUNT_SIGNUP_REDIRECT_URL = "profile-set" #회원가입 후 리디렉트
 LOGIN_REDIRECT_URL = 'index' #로그인 후 리디렉트
 ACCOUNT_LOGOUT_ON_GET = True #로그아웃 시 바로 로그아웃
 ACCOUNT_AUTHENTICATION_METHOD = 'email' #기본 로그인 email로

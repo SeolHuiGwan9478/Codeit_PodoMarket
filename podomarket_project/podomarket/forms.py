@@ -45,3 +45,13 @@ class PostUpdateForm(forms.ModelForm):
         widgets = {
            'item_condition' : forms.RadioSelect,
         }
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = [
+            'profile_pic',
+            'nickname',
+            'kakao_id',
+            'address',
+        ]
