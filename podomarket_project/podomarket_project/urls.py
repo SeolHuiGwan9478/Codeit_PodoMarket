@@ -35,7 +35,7 @@ urlpatterns = [
         TemplateView.as_view(template_name = "podomarket/email_confirmation_required.html"),
         name = "account_email_confirmation_required",
     ),
-    path('', include('allauth.urls')),   
+    path('', include('allauth.urls')), 
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

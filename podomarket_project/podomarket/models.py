@@ -14,6 +14,7 @@ class User(AbstractUser):
     address = models.CharField(max_length=40, null=True,
         validators=[validate_no_special_characters]
     )
+    profile_pic = models.ImageField(upload_to="profile_pic", default="default_profile_pic.jpg")
     def __str__(self):
         return self.email
 

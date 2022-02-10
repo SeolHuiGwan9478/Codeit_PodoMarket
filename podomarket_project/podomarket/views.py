@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from allauth.account.views import PasswordChangeView
 from allauth.account.models import EmailAddress
-from .models import Post
+from .models import Post, User
 from .forms import PostCreateForm, PostUpdateForm
 from braces.views import LoginRequiredMixin, UserPassesTestMixin
 from .functions import confirmation_required_redirect
@@ -67,3 +67,31 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 class CustomPasswordChangeView(PasswordChangeView):
     def get_success_url(self):
         return reverse("index")
+
+class ProfileView(DetailView):
+    model = User
+    template_name = "podomarket/profile.html"
+    pk_url_kwarg = 'user_id'
+    context_object_name = 'profile_user'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user_id = self.kwargs.get("user_id")
+        context["user_posts"] = Post.objects.filter(author__id = user_id).order_by("-dt_created")[:8]
+        return context
+    
+class UserPostListView(ListView):
+    model = Post
+    template_name = "podomarket/user_post_list.html"
+    content_context = "user_posts"
+    paginate_by = 8
+
+    def get_queryset(self):
+        user_id = self.kwargs.get("user_id")
+        return Post.objects.filter(author__id = user_id).order_by("-dt_created")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['profile_user'] = get_object_or_404(User, id=self.kwargs.get('user_id'))
+        return context
+
