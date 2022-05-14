@@ -4,8 +4,7 @@ from .validators import *
 
 # Create your models here.
 class User(AbstractUser):
-    nickname = models.CharField(max_length=15, unique=True,
-        error_messages = {"unique":"이미 사용중인 닉네임입니다."},
+    nickname = models.CharField(max_length=15,
         validators=[validate_no_special_characters]
     )
     kakao_id = models.CharField(max_length=20,
